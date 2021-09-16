@@ -1,9 +1,12 @@
 import "./App.css";
+import FooterContainer from "./containers/footer";
+import Faq from "./pages/faq";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello, I'm gonna be a Netflix website oneday!</h1>
+      <Faq></Faq>
+      <FooterContainer></FooterContainer>
     </div>
   );
 }
