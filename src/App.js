@@ -1,12 +1,10 @@
 import "./App.css";
-import FooterContainer from "./containers/footer";
-import Faq from "./pages/faq";
+import Home from "./pages/home";
 
 function App() {
   return (
     <div className="App">
-      <Faq></Faq>
-      <FooterContainer></FooterContainer>
+      <Home></Home>
     </div>
   );
 }
