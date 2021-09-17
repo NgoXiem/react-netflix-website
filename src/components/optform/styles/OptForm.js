@@ -81,6 +81,7 @@ export const Button = styled.button`
   min-height: 40px;
   max-height: 60px;
   display: flex;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   margin: 0.25em auto;

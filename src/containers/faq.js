@@ -34,7 +34,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Faq() {
+export default function FaqContainer() {
   return (
     <Container>
       <h1>Frequently Asked Questions</h1>
