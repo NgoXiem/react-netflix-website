@@ -6,8 +6,8 @@ export default function JumbotronContainer() {
   return (
     <>
       {data.map((item) => (
-        <Jumbotron>
-          <Jumbotron.Wrapper key={item.id} direction={item.direction}>
+        <Jumbotron key={item.id}>
+          <Jumbotron.Wrapper direction={item.direction}>
             <Jumbotron.Info>
               <h1>{item.title}</h1>
               <h2>{item.subTitle}</h2>
