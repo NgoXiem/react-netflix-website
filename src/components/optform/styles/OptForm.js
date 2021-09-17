@@ -94,6 +94,7 @@ export const Button = styled.button`
   color: #fff;
   background-color: #e50914;
   font-family: inherit;
+  cursor: pointer;
 
   @media only screen and (min-width: 950px) {
     font-size: 1.625rem;
