@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import styled from "styled-components/macro";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import Form from "../components/form";
-// import Background from "../components/background";
-import styled from "styled-components/macro";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useHistory } from "react-router";
+// import { FirebaseContext } from "../context/firebase";
 
 const Background = styled.div`
   height: 100%;
@@ -22,7 +24,32 @@ const FooterBg = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-export default function Signin() {
+export default function Signup() {
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+  const history = useHistory();
+  // const { firebase } = useContext(FirebaseContext);
+
+  const isInvalid = username === "" || email === "" || password === "";
+  const handleSubmit = (email, password, e) => {
+    e.preventDefault();
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        // userCredential.user.UserProfile({
+        //   displayName: username,
+        //   photoURL: Math.floor(Math.random() * 5) + 1,
+        history.push("/browse");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
+  };
+
   return (
     <>
       <Background>
@@ -30,17 +57,29 @@ export default function Signin() {
         <Form>
           <Form.Wrapper>
             <Form.Title>Sign Up</Form.Title>
-            <Form.Base>
-              <Form.Input type="text" placeholder="First name"></Form.Input>
-              <Form.Error>I am an first-name error!</Form.Error>
+            <Form.Error>{errorMessage}</Form.Error>
+            <Form.Base onSubmit={(e) => handleSubmit(email, password, e)}>
+              <Form.Input
+                type="text"
+                placeholder="First name"
+                onChange={(e) => setUsername(e.target.value)}
+              ></Form.Input>
+
               <Form.Input
                 type="text"
                 placeholder="Email or Phone number"
+                onChange={(e) => setEmail(e.target.value)}
               ></Form.Input>
-              <Form.Error>I am an error!</Form.Error>
-              <Form.Input type="password" placeholder="Password"></Form.Input>
-              <Form.Error>I am another error!</Form.Error>
-              <Form.Submit>Sign Up</Form.Submit>
+
+              <Form.Input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></Form.Input>
+
+              <Form.Submit disabled={isInvalid} type="submit">
+                Sign Up
+              </Form.Submit>
             </Form.Base>
 
             <Form.Text>

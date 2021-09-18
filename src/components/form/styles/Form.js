@@ -33,15 +33,14 @@ export const Base = styled.form`
   flex-direction: column;
 `;
 export const Input = styled.input`
+  padding-left: 15px;
+  color: #fff;
   background: #333;
   margin-bottom: 16px;
   min-height: 50px;
   outline: none;
   border: none;
   border-radius: 5px;
-  &::placeholder {
-    padding-left: 15px;
-  }
 `;
 export const Submit = styled.button`
   color: #fff;
@@ -54,6 +53,7 @@ export const Submit = styled.button`
   outline: none;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
   @media only screen and (min-width: 360px) {
     width: 100%;
     max-width: 100%;
@@ -62,12 +62,15 @@ export const Submit = styled.button`
     padding: 16px;
     font-size: 18px;
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 export const Title = styled.h1`
   color: #fff;
   font-size: 32px;
   font-weight: 700;
-  margin: 0 0 10px 0;
+  margin: 0 0 25px 0;
   padding: 0;
   @media screen and (min-width: 740px) {
     margin-bottom: 28px;
