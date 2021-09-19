@@ -22,6 +22,7 @@ const firebase = initializeApp(firebaseConfig);
 const db = getFirestore(firebase);
 
 // Add data to firestore
+// seedDatabase only runs one time, then you have to comment it out. Otherwise, the data keeps duplicating :D
 // seedDatabase(db);
 
 export { firebase };

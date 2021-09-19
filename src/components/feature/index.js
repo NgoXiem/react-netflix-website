@@ -7,6 +7,10 @@ import {
   Title,
   SubTitle,
   ImgWrapper,
+  Heading,
+  Description,
+  Button,
+  Group,
 } from "./styles/Feature";
 
 export default function Feature({ children, ...restProps }) {
@@ -40,4 +44,20 @@ Feature.Title = function FeatureTitle({ children, ...restProps }) {
 
 Feature.SubTitle = function FeatureSubTitle({ children, ...restProps }) {
   return <SubTitle {...restProps}>{children}</SubTitle>;
+};
+
+Feature.Group = function FeatureGroup({ children, ...restProps }) {
+  return <Group {...restProps}>{children}</Group>;
+};
+
+Feature.Heading = function FeatureHeading({ children, ...restProps }) {
+  return <Heading {...restProps}>{children}</Heading>;
+};
+
+Feature.Description = function FeatureDescription({ children, ...restProps }) {
+  return <Description {...restProps}>{children}</Description>;
+};
+
+Feature.Button = function FeatureButton({ children, ...restProps }) {
+  return <Button {...restProps}>{children}</Button>;
 };

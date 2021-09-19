@@ -14,6 +14,7 @@ export const Container = styled.div`
   bottom: 0;
   height: 5rem;
   z-index: 10;
+  color: #fff;
 
   @media only screen and (min-width: 550px) and (max-width: 949px),
     only screen and (min-width: 400px) and (max-width: 549px),
@@ -31,7 +32,6 @@ export const Wrapper = styled.div`
   margin: 0 3.5rem;
   height: 100%;
   display: flex;
-
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: flex-start;
@@ -56,4 +56,56 @@ export const Button = styled.a`
   color: #fff;
   border-radius: 3px;
   text-decoration: none;
+  cursor: pointer;
 `;
+
+export const Link = styled.a`
+  text-decoration: none;
+`;
+
+export const TextLink = styled.button`
+  border: none;
+  background-color: black;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+  background: transparent;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+export const Group = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+export const Search = styled.form``;
+export const Profile = styled.div`
+  position: relative;
+`;
+export const Dropdown = styled.div`
+  // display: none;
+`;
+export const UserImage = styled.img`
+  &:hover {
+    ${Dropdown} {
+      position: absolute;
+    }
+  }
+`;
+export const SearchIcon = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  img {
+    filter: brightness(0) invert(1);
+    width: 16px;
+  }
+`;
+export const SearchInput = styled.input``;
+
+export const UserInfo = styled.div``;

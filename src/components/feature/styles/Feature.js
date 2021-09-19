@@ -106,3 +106,35 @@ export const SubTitle = styled.h2`
     max-width: 800px;
   }
 `;
+
+export const Group = styled(Wrapper)`
+  border-bottom: none;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const Heading = styled.h1``;
+export const Description = styled.p`
+  margin-bottom: 25px;
+  max-width: 610px;
+  font-size: 1em;
+`;
+export const Button = styled.button`
+  width: fit-content;
+  background-color: #fff;
+  line-height: normal;
+  padding: 5px 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: black;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  &:hover {
+    background-color: #e50914;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+`;

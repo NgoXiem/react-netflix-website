@@ -1,11 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import Form from "../components/form";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useHistory } from "react-router";
-// import { FirebaseContext } from "../context/firebase";
+import db from "../lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const Background = styled.div`
   height: 100%;
@@ -27,28 +32,35 @@ const FooterBg = styled.div`
 export default function Signup() {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
+  const [userId, setUserId] = useState("RGUo15yEa0TnRxa9dsll9Eejx2B3");
   const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const history = useHistory();
-  // const { firebase } = useContext(FirebaseContext);
-
+  const auth = getAuth();
   const isInvalid = username === "" || email === "" || password === "";
   const handleSubmit = (email, password, e) => {
     e.preventDefault();
-    const auth = getAuth();
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        // userCredential.user.UserProfile({
-        //   displayName: username,
-        //   photoURL: Math.floor(Math.random() * 5) + 1,
+        setUserId(userCredential.user.uid);
         history.push("/browse");
       })
       .catch((error) => {
         setErrorMessage(error.message);
       });
   };
+
+  useEffect(() => {
+    const addUsers = async (db) => {
+      await setDoc(doc(db, "users", userId), {
+        displayName: username,
+        email: email,
+        photoURL: Math.floor(Math.random() * 5) + 1,
+      });
+    };
+    addUsers(db);
+  }, []);
 
   return (
     <>

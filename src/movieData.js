@@ -178,6 +178,7 @@ export function seedDatabase(db) {
       slug: "making-a-murderer",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "Long Shot",
@@ -188,6 +189,7 @@ export function seedDatabase(db) {
       slug: "long-shot",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "The Confession Killer",
@@ -198,6 +200,7 @@ export function seedDatabase(db) {
       slug: "the-confession-killer",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "The Innocent Man",
@@ -208,6 +211,7 @@ export function seedDatabase(db) {
       slug: "the-innocent-man",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "The Staircase",
@@ -230,6 +234,7 @@ export function seedDatabase(db) {
       slug: "good-will-hunting",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "Forrest Gump",
@@ -240,6 +245,7 @@ export function seedDatabase(db) {
       slug: "forrest-gump",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "Juno",
@@ -250,6 +256,7 @@ export function seedDatabase(db) {
       slug: "juno",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "Midnight In Paris",
@@ -260,6 +267,7 @@ export function seedDatabase(db) {
       slug: "midnight-in-paris",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "series"), {
       title: "School of Rock",
@@ -284,6 +292,7 @@ export function seedDatabase(db) {
       slug: "the-prestige",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Fight Club",
@@ -294,6 +303,7 @@ export function seedDatabase(db) {
       slug: "fight-club",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Kings Speech",
@@ -304,6 +314,7 @@ export function seedDatabase(db) {
       slug: "kings-speech",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "The Revenant",
@@ -314,6 +325,7 @@ export function seedDatabase(db) {
       slug: "the-revenant",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "The Social Network",
@@ -324,6 +336,7 @@ export function seedDatabase(db) {
       slug: "the-social-network",
     });
   })(db);
+
   // Suspense
   (async (db) => {
     await addDoc(collection(db, "films"), {
@@ -335,6 +348,7 @@ export function seedDatabase(db) {
       slug: "shutter-island",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Gone Girl",
@@ -345,6 +359,7 @@ export function seedDatabase(db) {
       slug: "gone-girl",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Prisoners",
@@ -355,6 +370,7 @@ export function seedDatabase(db) {
       slug: "prisoners",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Seven",
@@ -365,6 +381,7 @@ export function seedDatabase(db) {
       slug: "seven",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Zodiac",
@@ -375,6 +392,7 @@ export function seedDatabase(db) {
       slug: "zodiac",
     });
   })(db);
+
   // Children
   (async (db) => {
     await addDoc(collection(db, "films"), {
@@ -386,6 +404,7 @@ export function seedDatabase(db) {
       slug: "hotel-transylvania",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Despicable Me",
@@ -396,6 +415,7 @@ export function seedDatabase(db) {
       slug: "despicable-me",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Frozen",
@@ -406,6 +426,7 @@ export function seedDatabase(db) {
       slug: "frozen",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Spirited Away",
@@ -416,6 +437,7 @@ export function seedDatabase(db) {
       slug: "spirited-away",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Up",
@@ -438,6 +460,7 @@ export function seedDatabase(db) {
       slug: "joker",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "A Quiet Place",
@@ -448,6 +471,7 @@ export function seedDatabase(db) {
       slug: "a-quiet-place",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Black Swan",
@@ -458,6 +482,7 @@ export function seedDatabase(db) {
       slug: "black-swan",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Nightcrawler",
@@ -468,6 +493,7 @@ export function seedDatabase(db) {
       slug: "nightcrawler",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "The Silence of The Lambs",
@@ -490,6 +516,7 @@ export function seedDatabase(db) {
       slug: "a-star-is-born",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Blue Valentine",
@@ -500,6 +527,7 @@ export function seedDatabase(db) {
       slug: "blue-valentine",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "La La Land",
@@ -510,6 +538,7 @@ export function seedDatabase(db) {
       slug: "la-la-land",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "The Notebook",
@@ -520,6 +549,7 @@ export function seedDatabase(db) {
       slug: "the-notebook",
     });
   })(db);
+
   (async (db) => {
     await addDoc(collection(db, "films"), {
       title: "Titanic",
