@@ -47,27 +47,27 @@ Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
 Header.Search = function HeaderSearch({ children, ...restProps }) {
   return (
     <Search {...restProps}>
+      <SearchInput></SearchInput>
       <SearchIcon>
         <img src="/public/images/icons/search.png" alt="search" />
       </SearchIcon>
-      <SearchInput></SearchInput>
       {children}
     </Search>
   );
 };
 
 Header.Profile = function HeaderProfile({ children, ...restProps }) {
-  return <Profile>{children}</Profile>;
+  return <Profile {...restProps}>{children}</Profile>;
 };
 
 Header.UserImage = function HeaderUserImage({ children, ...restProps }) {
-  return <UserImage>{children}</UserImage>;
+  return <UserImage {...restProps}>{children}</UserImage>;
 };
 
 Header.Dropdown = function HeaderDropdown({ children, ...restProps }) {
-  return <Dropdown>{children}</Dropdown>;
+  return <Dropdown {...restProps}>{children}</Dropdown>;
 };
 
 Header.UserInfo = function HeaderUserInfo({ children, ...restProps }) {
-  return <UserInfo>{children}</UserInfo>;
+  return <UserInfo {...restProps}>{children}</UserInfo>;
 };

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import db from "../lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
 import Header from "../components/header/index";
 import Feature from "../components/feature/index";
 import FooterContainer from "../containers/footer";
+import Card from "../components/card";
 import logo from "../logo.svg";
 import styled from "styled-components/macro";
-import { getAuth, signOut } from "firebase/auth";
 import { useHistory } from "react-router-dom";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+
 const Bg = styled.div`
   height: 100%;
   width: 100%;
@@ -17,20 +19,14 @@ const Bg = styled.div`
   background-repeat: no-repeat;
 `;
 
-// Read the data from firebase
-const getDocument = async (db) => {
-  const querySnapshot = await getDocs(collection(db, "series"));
-  querySnapshot.forEach((doc) => {
-    // console.log(doc.id, " => ", doc.data());
-  });
-};
-getDocument(db);
-
-export default function BrowseContainer() {
+export default function BrowseContainer({ data }) {
   const [category, setCategory] = useState("series");
+  const [userProfile, setUserProfile] = useState({});
+  const [list, setList] = useState();
   const history = useHistory();
   const auth = getAuth();
-
+  console.log(data);
+  // do something when the user hits SignOut button:
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
@@ -38,6 +34,30 @@ export default function BrowseContainer() {
       })
       .catch((err) => console.log(err));
   };
+
+  // get users' profile from firebase to display it in the UI
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      const getUser = async (db) => {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUserProfile(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      };
+      getUser(db);
+    }
+  });
+
+  // useEffect(() => {
+  //   if (data) {
+  //     setList(data[category]);
+  //   }
+  // }, [category, data]);
+
   return (
     <>
       <Bg>
@@ -60,12 +80,11 @@ export default function BrowseContainer() {
               <Header.Search></Header.Search>
               <Header.Profile>
                 <Header.UserImage
-                //   src={`/public/images/users/${user.photoURL}.png`}
+                  src={`/public/images/users/${userProfile.photoURL}.png`}
                 ></Header.UserImage>
                 <Header.Dropdown>
                   <Header.UserInfo>
-                    {/* <p>{user.displayName}</p>
-                    <p>{user.email}</p> */}
+                    <p>{userProfile.displayName}</p>
                   </Header.UserInfo>
                   <Header.Button onClick={() => handleSignout()}>
                     Sign Out
@@ -89,6 +108,36 @@ export default function BrowseContainer() {
           </Feature.Group>
         </Feature>
       </Bg>
+
+      <Card>
+        <Card.RowTitle>Documentaries</Card.RowTitle>
+        <Card.Row>
+          <Card.Item>
+            <Card.Image src="/public/images/series/documentaries/man-on-wire/small.jpg"></Card.Image>
+            <Card.Info>
+              <Card.Title>Man on wire</Card.Title>
+              <Card.Description>
+                Filmmaker James Marsh masterfully recreates high-wire daredevil
+                Philippe Petit's 1974 stunt walking on a wire across the Twin
+                Towers.
+              </Card.Description>
+            </Card.Info>
+          </Card.Item>
+          <Card.Item>
+            <Card.Image src="/public/images/series/documentaries/man-on-wire/small.jpg"></Card.Image>
+            <Card.Info>
+              <Card.Title>Man on wire</Card.Title>
+              <Card.Description>
+                Filmmaker James Marsh masterfully recreates high-wire daredevil
+                Philippe Petit's 1974 stunt walking on a wire across the Twin
+                Towers.
+              </Card.Description>
+            </Card.Info>
+          </Card.Item>
+        </Card.Row>
+        <Card.Feature></Card.Feature>
+      </Card>
+
       <FooterContainer></FooterContainer>
     </>
   );

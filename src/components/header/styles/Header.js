@@ -79,19 +79,64 @@ export const Group = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const Search = styled.form``;
-export const Profile = styled.div`
-  position: relative;
+export const SearchInput = styled.input`
+  padding: 3px 5px;
+  outline: none;
+  border: none;
+  &:focus {
+    outline: none;
+    border: none;
+  }
 `;
-export const Dropdown = styled.div`
-  // display: none;
-`;
-export const UserImage = styled.img`
+export const UserInfo = styled.div``;
+
+export const Search = styled.form`
+  // padding-bottom: 10px;
+  ${SearchInput} {
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 0.3s ease;
+  }
   &:hover {
-    ${Dropdown} {
-      position: absolute;
+    ${SearchInput} {
+      transform: scaleX(100%);
     }
   }
+`;
+
+export const Dropdown = styled.div`
+  position: absolute;
+  bottom: -110%;
+  left: -30px;
+  opacity: 0;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  border-radius: 5px;
+`;
+export const Profile = styled.div`
+  position: relative;
+  max-width: 30px;
+  max-height: 30px;
+
+  &:hover {
+    ${Dropdown} {
+      display: flex;
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`;
+export const UserImage = styled.img`
+  max-width: 30px;
+  max-height: 30px;
+  cursor: pointer; ;
 `;
 export const SearchIcon = styled.button`
   cursor: pointer;
@@ -101,11 +146,9 @@ export const SearchIcon = styled.button`
   height: 32px;
   width: 32px;
   padding: 0;
+  cursor: pointer;
   img {
     filter: brightness(0) invert(1);
-    width: 16px;
+    width: 20px;
   }
 `;
-export const SearchInput = styled.input``;
-
-export const UserInfo = styled.div``;

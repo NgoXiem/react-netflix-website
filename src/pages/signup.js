@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import Form from "../components/form";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useHistory } from "react-router";
 import db from "../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -32,7 +28,6 @@ const FooterBg = styled.div`
 export default function Signup() {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
-  const [userId, setUserId] = useState("RGUo15yEa0TnRxa9dsll9Eejx2B3");
   const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const history = useHistory();
@@ -43,24 +38,21 @@ export default function Signup() {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setUserId(userCredential.user.uid);
+        // Add users' profile to firestore to retrieve it later in browse page
+        const addUsers = async (db) => {
+          await setDoc(doc(db, "users", userCredential.user.uid), {
+            displayName: username,
+            email: email,
+            photoURL: Math.floor(Math.random() * 5) + 1,
+          });
+        };
+        addUsers(db);
         history.push("/browse");
       })
       .catch((error) => {
         setErrorMessage(error.message);
       });
   };
-
-  useEffect(() => {
-    const addUsers = async (db) => {
-      await setDoc(doc(db, "users", userId), {
-        displayName: username,
-        email: email,
-        photoURL: Math.floor(Math.random() * 5) + 1,
-      });
-    };
-    addUsers(db);
-  }, []);
 
   return (
     <>
