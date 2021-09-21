@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import db from "../lib/firebase";
 import Header from "../components/header/index";
 import Feature from "../components/feature/index";
@@ -21,11 +21,17 @@ const Bg = styled.div`
 
 export default function BrowseContainer({ data }) {
   const [category, setCategory] = useState("series");
-  const [userProfile, setUserProfile] = useState({});
   const [list, setList] = useState();
+  const [userProfile, setUserProfile] = useState({});
   const history = useHistory();
   const auth = getAuth();
-  console.log(data);
+  const componentIsMounted = useRef(true);
+
+  useEffect(() => {
+    if (data) {
+      setList(data[category]);
+    }
+  }, [category]);
   // do something when the user hits SignOut button:
   const handleSignout = () => {
     signOut(auth)
@@ -35,29 +41,29 @@ export default function BrowseContainer({ data }) {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    componentIsMounted.current = true;
+    return () => {
+      componentIsMounted.current = false;
+    };
+  }, []);
   // get users' profile from firebase to display it in the UI
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      const getUser = async (db) => {
-        const docRef = doc(db, "users", uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setUserProfile(docSnap.data());
-        } else {
-          console.log("No such document!");
-        }
-      };
-      getUser(db);
-    }
-  });
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setList(data[category]);
-  //   }
-  // }, [category, data]);
-
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        const getUser = async (db) => {
+          const docRef = doc(db, "users", uid);
+          const docSnap = await getDoc(docRef);
+          if (componentIsMounted.current) {
+            setUserProfile(docSnap.data());
+          }
+        };
+        getUser(db);
+      }
+    });
+  }, [db]);
+  console.log(list);
   return (
     <>
       <Bg>
@@ -108,35 +114,27 @@ export default function BrowseContainer({ data }) {
           </Feature.Group>
         </Feature>
       </Bg>
-
-      <Card>
-        <Card.RowTitle>Documentaries</Card.RowTitle>
-        <Card.Row>
-          <Card.Item>
-            <Card.Image src="/public/images/series/documentaries/man-on-wire/small.jpg"></Card.Image>
-            <Card.Info>
-              <Card.Title>Man on wire</Card.Title>
-              <Card.Description>
-                Filmmaker James Marsh masterfully recreates high-wire daredevil
-                Philippe Petit's 1974 stunt walking on a wire across the Twin
-                Towers.
-              </Card.Description>
-            </Card.Info>
-          </Card.Item>
-          <Card.Item>
-            <Card.Image src="/public/images/series/documentaries/man-on-wire/small.jpg"></Card.Image>
-            <Card.Info>
-              <Card.Title>Man on wire</Card.Title>
-              <Card.Description>
-                Filmmaker James Marsh masterfully recreates high-wire daredevil
-                Philippe Petit's 1974 stunt walking on a wire across the Twin
-                Towers.
-              </Card.Description>
-            </Card.Info>
-          </Card.Item>
-        </Card.Row>
-        <Card.Feature></Card.Feature>
-      </Card>
+      {list &&
+        list.map((listItem) => (
+          <Card key={category + listItem.title}>
+            <Card.RowTitle>{listItem.title}</Card.RowTitle>
+            <Card.Row>
+              {listItem &&
+                listItem.data.map((item, index) => (
+                  <Card.Item key={item.index}>
+                    <Card.Image
+                      src={`/public/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                    ></Card.Image>
+                    <Card.Info>
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Description>{item.description}</Card.Description>
+                    </Card.Info>
+                  </Card.Item>
+                ))}
+            </Card.Row>
+            {/* <Card.Feature></Card.Feature> */}
+          </Card>
+        ))}
 
       <FooterContainer></FooterContainer>
     </>

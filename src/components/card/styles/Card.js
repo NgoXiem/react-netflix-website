@@ -2,14 +2,14 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   color: #fff;
-  padding: 70px 45px;
+  padding: 0px 45px;
 `;
 export const RowTitle = styled.h3``;
 
 export const Image = styled.img`
   width: 100%;
   height: auto;
-  max-width: 250px;
+  width: 250px;
   cursor: pointer;
   border-radius: 3px;
 `;
@@ -39,6 +39,8 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 export const Feature = styled.div`
   position: relative;
@@ -57,7 +59,10 @@ export const Maturity = styled.span`
 `;
 export const PlayButton = styled.button``;
 export const BigTitle = styled.h3``;
-export const BigDescription = styled.p``;
+export const BigDescription = styled.p`
+  max-width: 400px;
+  font-size: 1rem;
+`;
 export const Group = styled.div`
   position: absolute;
   top: 0;

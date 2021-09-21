@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import BrowseContainer from "../containers/browse";
-// import DataGathering from "../utils/data";
 import { collection, getDocs } from "firebase/firestore";
 import db from "../lib/firebase";
-import { useEffect } from "react/cjs/react.development";
 
 export default function Browse() {
   let series = [];
   let films = [];
   const [data, setData] = useState();
+  const componentIsMounted = useRef(true);
+
+  useEffect(() => {
+    componentIsMounted.current = true;
+    return () => {
+      componentIsMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     // get the moviedata from firebase
@@ -21,11 +27,8 @@ export default function Browse() {
       filmsSnapshot.forEach((doc) => {
         films = [...films, { id: doc.id, ...doc.data() }];
       });
-      return { series, films };
-    };
-    // filter based on categories
-    getDocument(db)
-      .then(({ series, films }) => {
+
+      if (componentIsMounted.current) {
         setData({
           series: [
             {
@@ -72,10 +75,10 @@ export default function Browse() {
             },
           ],
         });
-      })
-      .catch((err) => console.log(err));
-    console.log(data);
-  }, []);
+      }
+    };
+    getDocument(db);
+  }, [db]);
 
   return <BrowseContainer data={data}></BrowseContainer>;
 }
