@@ -59,7 +59,7 @@ export default function BrowseContainer({ data }) {
         <Header>
           <Header.Wrapper>
             <Header.Group>
-              <Header.Link href="/">
+              <Header.Link href="/browse">
                 <Header.Logo>
                   <img src={logo} alt="" />
                 </Header.Logo>
@@ -101,6 +101,7 @@ export default function BrowseContainer({ data }) {
             </Feature.Description>
             <Feature.Button>Play</Feature.Button>
           </Feature.Group>
+          <Feature.Gradient></Feature.Gradient>
         </Feature>
       </Bg>
       {data &&
@@ -109,7 +110,7 @@ export default function BrowseContainer({ data }) {
             <Card.RowTitle>{listItem.title}</Card.RowTitle>
             <Card.Row>
               {listItem.data.map((item) => (
-                <Card.Item key={item.id}>
+                <Card.Item key={item.id} item={item}>
                   <Card.Image
                     src={`/public/images/${category}/${item.genre}/${item.slug}/small.jpg`}
                   ></Card.Image>
@@ -120,10 +121,9 @@ export default function BrowseContainer({ data }) {
                 </Card.Item>
               ))}
             </Card.Row>
-            {/* <Card.Feature></Card.Feature> */}
+            <Card.Feature category={category}></Card.Feature>
           </Card>
         ))}
-
       <FooterContainer></FooterContainer>
     </>
   );

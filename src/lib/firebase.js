@@ -14,16 +14,7 @@ const firebaseConfig = {
   messagingSenderId: "1029113596955",
   appId: "1:1029113596955:web:f4a551f3e1085c4a25fcbe",
 };
-/*
-const firebaseConfig = {
-  apiKey: "AIzaSyA1u-ao7HmFzDNY9TxNzmTbZRxYWJ-mMuA",
-  authDomain: "clone-2982e.firebaseapp.com",
-  projectId: "clone-2982e",
-  storageBucket: "clone-2982e.appspot.com",
-  messagingSenderId: "751807198382",
-  appId: "1:751807198382:web:7a77f1b5a31fe9b2b6293f",
-};
-*/
+
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 

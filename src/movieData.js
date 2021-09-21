@@ -205,7 +205,7 @@ export function seedDatabase(db) {
     await addDoc(collection(db, "series"), {
       title: "The Innocent Man",
       description:
-        "Henry Lee Lucas was an American convicted serial killer whose crimes spanned from 1960 to 1983. He was convicted of murdering eleven people and condemned to death for the murder of Debra Jackson.",
+        "This documentary adaptation of John Grisham's only nonfiction book raises troubling questions about two murder cases in Ada, Oklahoma, in the 1980s.",
       genre: "crime",
       maturity: "18",
       slug: "the-innocent-man",

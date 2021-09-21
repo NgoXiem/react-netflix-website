@@ -65,5 +65,6 @@ export const Button = styled.button`
     width: 100%;
     height: auto;
     float: right;
+    filter: brightness(0) invert(1);
   }
 `;

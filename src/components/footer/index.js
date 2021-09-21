@@ -1,10 +1,13 @@
 import React from "react";
-import { Container, Row, Text, Link, Wrapper, TopLink } from "./styles/Footer";
+import { Container, Row, Text, Link, Wrapper, TopLink, Group } from "./styles/Footer";
 
 export default function Footer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 }
 
+Footer.Group = function FooterGroup({ children, ...restProps }) {
+  return <Group {...restProps}>{children}</Group>;
+};
 Footer.Row = function FooterRow({ children, ...restProps }) {
   return <Row {...restProps}>{children}</Row>;
 };

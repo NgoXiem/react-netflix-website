@@ -106,7 +106,8 @@ export const Button = styled.button`
   }
 
   img {
-    max-width: 20px;
+    filter: brightness(0) invert(1);
+    width: 20px;
   }
   span {
     padding: 8px 0;

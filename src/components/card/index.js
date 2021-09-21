@@ -1,4 +1,5 @@
-import React from "react";
+import React, { createContext, useState, useContext } from "react";
+
 import {
   Container,
   Title,
@@ -16,15 +17,28 @@ import {
   BigDescription,
   Group,
   BigImage,
+  Close,
+  Inline,
 } from "./styles/Card";
 
+export const FeatureContext = createContext();
+
 export default function Card({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+  const [showFeature, setShowFeature] = useState(false);
+  const [itemFeature, setItemFeature] = useState({});
+  return (
+    <FeatureContext.Provider
+      value={{ showFeature, setShowFeature, itemFeature, setItemFeature }}
+    >
+      <Container {...restProps}>{children}</Container>;
+    </FeatureContext.Provider>
+  );
 }
 
 Card.Row = function CardRow({ children, ...restProps }) {
   return <Row {...restProps}>{children}</Row>;
 };
+
 Card.Title = function CardTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
@@ -37,8 +51,19 @@ Card.Image = function CardImage({ children, ...restProps }) {
   return <Image {...restProps}>{children}</Image>;
 };
 
-Card.Item = function CardItem({ children, ...restProps }) {
-  return <Item {...restProps}>{children}</Item>;
+Card.Item = function CardItem({ item, children, ...restProps }) {
+  const { setShowFeature, setItemFeature } = useContext(FeatureContext);
+  return (
+    <Item
+      onClick={() => {
+        setShowFeature(true);
+        setItemFeature(item);
+      }}
+      {...restProps}
+    >
+      {children}
+    </Item>
+  );
 };
 
 Card.Info = function CardInfo({ children, ...restProps }) {
@@ -49,24 +74,29 @@ Card.Description = function CardDescription({ children, ...restProps }) {
   return <Description {...restProps}>{children}</Description>;
 };
 
-Card.Feature = function CardFeature({ children, ...restProps }) {
-  return (
+Card.Feature = function CardFeature({ category, children, ...restProps }) {
+  const { itemFeature, showFeature, setShowFeature } =
+    useContext(FeatureContext);
+
+  return showFeature ? (
     <Feature {...restProps}>
       <Group>
-        <BigTitle>Man on wire</BigTitle>
-        <BigDescription>
-          Filmmaker James Marsh masterfully recreates high-wire daredevil
-          Philippe Petit's 1974 stunt walking on a wire across the Twin Towers.
-        </BigDescription>
-        <Maturity>12</Maturity>
-        <Genre>Documentaries</Genre>
+        <BigTitle>{itemFeature.title}</BigTitle>
+        <BigDescription>{itemFeature.description}</BigDescription>
+        <Inline>
+          <Maturity>{itemFeature.maturity}</Maturity>
+          <Genre>Documentaries</Genre>
+        </Inline>
         <PlayButton>Play</PlayButton>
       </Group>
       <img
-        src="/public/images/series/documentaries/man-on-wire/large.jpg"
-        alt="man-on-wire"
+        src={`/public/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+        alt={itemFeature.slug}
       />
+      <Close onClick={() => setShowFeature(false)}>
+        <img src="/public/images/icons/close.png" alt="close" />
+      </Close>
       {children}
     </Feature>
-  );
+  ) : null;
 };

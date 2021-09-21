@@ -11,6 +11,7 @@ import {
   Description,
   Button,
   Group,
+  Gradient,
 } from "./styles/Feature";
 
 export default function Feature({ children, ...restProps }) {
@@ -48,6 +49,9 @@ Feature.SubTitle = function FeatureSubTitle({ children, ...restProps }) {
 
 Feature.Group = function FeatureGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
+};
+Feature.Gradient = function FeatureGradient({ children, ...restProps }) {
+  return <Gradient {...restProps}>{children}</Gradient>;
 };
 
 Feature.Heading = function FeatureHeading({ children, ...restProps }) {

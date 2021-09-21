@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   margin: 0 auto;
+  position: relative;
 `;
 export const Wrapper = styled.div`
   position: relative;
@@ -114,7 +115,14 @@ export const Group = styled(Wrapper)`
   flex-direction: column;
   justify-content: center;
 `;
-
+export const Gradient = styled.div`
+  position: absolute;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(229, 229, 229, 0), black);
+`;
 export const Heading = styled.h1``;
 export const Description = styled.p`
   margin-bottom: 25px;

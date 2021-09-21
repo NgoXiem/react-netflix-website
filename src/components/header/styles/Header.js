@@ -82,10 +82,14 @@ export const Group = styled.div`
 export const SearchInput = styled.input`
   padding: 3px 5px;
   outline: none;
-  border: none;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
   &:focus {
     outline: none;
-    border: none;
+  }
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 export const UserInfo = styled.div``;
@@ -150,5 +154,8 @@ export const SearchIcon = styled.button`
   img {
     filter: brightness(0) invert(1);
     width: 20px;
+  }
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;

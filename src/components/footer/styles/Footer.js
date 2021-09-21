@@ -2,13 +2,18 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   font-size: 13px;
-  padding: 70px 45px 20px 45px;
+  padding: 70px 45px 30px 45px;
   max-width: 1000px;
+  margin: 0 auto;
 `;
 export const Text = styled.p`
   color: #757575;
   margin: 24px 0 13px 0;
 `;
+export const Group = styled.div`
+  margin: auto;
+`;
+
 export const Row = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
