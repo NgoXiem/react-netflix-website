@@ -9,8 +9,7 @@ export const RowTitle = styled.h3``;
 export const Image = styled.img`
   width: 100%;
   height: auto;
-  width: 250px;
-  cursor: pointer;
+  max-width: 400px;
   border-radius: 3px;
 `;
 export const Info = styled.div`
@@ -19,7 +18,7 @@ export const Info = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0px 5px 10px 5px;
+  padding: 0px 5px 10px 15px;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: all 0.2s ease-in-out;
@@ -27,8 +26,9 @@ export const Info = styled.div`
 export const Item = styled.div`
   position: relative;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.3);
     ${Info} {
       opacity: 1;
     }
@@ -41,6 +41,9 @@ export const Row = styled.div`
   gap: 5px;
   overflow-x: scroll;
   overflow-y: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const Feature = styled.div`
   position: relative;

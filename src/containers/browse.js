@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import db from "../lib/firebase";
 import Header from "../components/header/index";
 import Feature from "../components/feature/index";
@@ -21,17 +21,10 @@ const Bg = styled.div`
 
 export default function BrowseContainer({ data }) {
   const [category, setCategory] = useState("series");
-  const [list, setList] = useState();
   const [userProfile, setUserProfile] = useState({});
   const history = useHistory();
   const auth = getAuth();
-  const componentIsMounted = useRef(true);
 
-  useEffect(() => {
-    if (data) {
-      setList(data[category]);
-    }
-  }, [category]);
   // do something when the user hits SignOut button:
   const handleSignout = () => {
     signOut(auth)
@@ -41,12 +34,6 @@ export default function BrowseContainer({ data }) {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    componentIsMounted.current = true;
-    return () => {
-      componentIsMounted.current = false;
-    };
-  }, []);
   // get users' profile from firebase to display it in the UI
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -55,15 +42,17 @@ export default function BrowseContainer({ data }) {
         const getUser = async (db) => {
           const docRef = doc(db, "users", uid);
           const docSnap = await getDoc(docRef);
-          if (componentIsMounted.current) {
-            setUserProfile(docSnap.data());
-          }
+          return docSnap;
         };
-        getUser(db);
+        getUser(db)
+          .then((docSnap) => {
+            setUserProfile(docSnap.data());
+          })
+          .catch((err) => console.log(err));
       }
     });
   }, [db]);
-  console.log(list);
+
   return (
     <>
       <Bg>
@@ -114,23 +103,22 @@ export default function BrowseContainer({ data }) {
           </Feature.Group>
         </Feature>
       </Bg>
-      {list &&
-        list.map((listItem) => (
+      {data &&
+        data[category].map((listItem) => (
           <Card key={category + listItem.title}>
             <Card.RowTitle>{listItem.title}</Card.RowTitle>
             <Card.Row>
-              {listItem &&
-                listItem.data.map((item, index) => (
-                  <Card.Item key={item.index}>
-                    <Card.Image
-                      src={`/public/images/${category}/${item.genre}/${item.slug}/small.jpg`}
-                    ></Card.Image>
-                    <Card.Info>
-                      <Card.Title>{item.title}</Card.Title>
-                      <Card.Description>{item.description}</Card.Description>
-                    </Card.Info>
-                  </Card.Item>
-                ))}
+              {listItem.data.map((item) => (
+                <Card.Item key={item.id}>
+                  <Card.Image
+                    src={`/public/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                  ></Card.Image>
+                  <Card.Info>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Description>{item.description}</Card.Description>
+                  </Card.Info>
+                </Card.Item>
+              ))}
             </Card.Row>
             {/* <Card.Feature></Card.Feature> */}
           </Card>
