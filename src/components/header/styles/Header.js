@@ -97,6 +97,9 @@ export const SearchInput = styled.div`
     &:focus {
       outline: none;
     }
+    &::placeholder {
+      color: #fff;
+    }
   }
   @media screen and (max-width: 450px) {
     display: none;

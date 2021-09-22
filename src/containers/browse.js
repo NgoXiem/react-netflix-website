@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import db from "../lib/firebase";
 import Header from "../components/header/index";
 import Feature from "../components/feature/index";
+import { Video, PlayButton, VideoWrapper } from "../components/video/index";
 import FooterContainer from "../containers/footer";
 import Card from "../components/card";
 import logo from "../logo.svg";
@@ -22,7 +23,7 @@ const Bg = styled.div`
 `;
 
 export default function BrowseContainer({ data }) {
-  const [category, setCategory] = useState("series");
+  const [category, setCategory] = useState("films");
   const [userProfile, setUserProfile] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [list, setList] = useState([]);
@@ -153,7 +154,12 @@ export default function BrowseContainer({ data }) {
                 </Card.Item>
               ))}
             </Card.Row>
-            <Card.Feature category={category}></Card.Feature>
+            <Card.Feature category={category}>
+              <VideoWrapper>
+                <PlayButton></PlayButton>
+                <Video></Video>
+              </VideoWrapper>
+            </Card.Feature>
           </Card>
         ))}
       <FooterContainer></FooterContainer>

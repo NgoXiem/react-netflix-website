@@ -104,7 +104,13 @@ export const Button = styled.button`
     border-left: 1px solid #333;
     margin: 0 !important;
   }
-
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: #fff;
+  }
   img {
     filter: brightness(0) invert(1);
     width: 20px;

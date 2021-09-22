@@ -62,7 +62,7 @@ Header.Search = function HeaderSearch({
         />
       </SearchInput>
       <SearchIcon
-        onClick={(e, searchActive) => {
+        onClick={(e) => {
           e.preventDefault();
           setSearchActive((searchActive) => !searchActive);
         }}

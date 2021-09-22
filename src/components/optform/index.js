@@ -19,7 +19,7 @@ OptForm.Input = function OptFormInput({ ...restProps }) {
 OptForm.Button = function OptFormButton({ children, ...restProps }) {
   return (
     <Button {...restProps}>
-      <p>Get Started</p>
+      <a href="/login">Get Started</a>
       <img src="/public/images/icons/chevron-right.png" alt="right" />
       {children}
     </Button>

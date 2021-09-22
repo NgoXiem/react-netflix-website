@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from "react";
-
 import {
   Container,
   Title,
@@ -12,7 +11,6 @@ import {
   Feature,
   Description,
   Maturity,
-  PlayButton,
   BigTitle,
   BigDescription,
   Group,
@@ -85,9 +83,11 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
         <BigDescription>{itemFeature.description}</BigDescription>
         <Inline>
           <Maturity>{itemFeature.maturity}</Maturity>
-          <Genre>Documentaries</Genre>
+          <Genre>
+            {itemFeature.genre.charAt(0).toUpperCase() +
+              itemFeature.genre.slice(1)}
+          </Genre>
         </Inline>
-        <PlayButton>Play</PlayButton>
       </Group>
       <BigImage>
         <img

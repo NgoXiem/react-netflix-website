@@ -109,22 +109,7 @@ export const Maturity = styled.span`
   padding: 5px;
   font-size: 13px;
 `;
-export const PlayButton = styled.button`
-  width: fit-content;
-  float: none;
-  margin-top: 10px;
-  white-space: nowrap;
-  background-color: #e50914;
-  line-height: normal;
-  padding: 5px 20px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  border-radius: 3px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-`;
+
 export const BigTitle = styled.h3``;
 export const BigDescription = styled.p`
   max-width: 450px;
