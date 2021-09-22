@@ -9,7 +9,9 @@ import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import Fuse from "fuse.js";
 
+// Background
 const Bg = styled.div`
   height: 100%;
   width: 100%;
@@ -22,8 +24,30 @@ const Bg = styled.div`
 export default function BrowseContainer({ data }) {
   const [category, setCategory] = useState("series");
   const [userProfile, setUserProfile] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [list, setList] = useState([]);
   const history = useHistory();
   const auth = getAuth();
+
+  // get data based on whether user clicked on series or films
+  useEffect(() => {
+    data && setList(data[category]);
+  }, [data, category]);
+
+  // live search with fuse
+  useEffect(() => {
+    const fuse = new Fuse(list, {
+      keys: ["data.title", "data.genre", "data.description", "data.maturity"],
+    });
+
+    const results = fuse.search(searchTerm);
+    const itemResults = searchTerm
+      ? results.map((result) => result.item)
+      : list;
+    if (itemResults.length > 0) {
+      setList(itemResults);
+    }
+  }, [searchTerm]);
 
   // do something when the user hits SignOut button:
   const handleSignout = () => {
@@ -72,7 +96,10 @@ export default function BrowseContainer({ data }) {
               </Header.TextLink>
             </Header.Group>
             <Header.Group>
-              <Header.Search></Header.Search>
+              <Header.Search
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+              ></Header.Search>
               <Header.Profile>
                 <Header.UserImage
                   src={`/public/images/users/${userProfile.photoURL}.png`}
@@ -81,7 +108,12 @@ export default function BrowseContainer({ data }) {
                   <Header.UserInfo>
                     <p>{userProfile.displayName}</p>
                   </Header.UserInfo>
-                  <Header.Button onClick={() => handleSignout()}>
+                  <Header.Button
+                    onClick={() => {
+                      handleSignout();
+                      localStorage.removeItem("user");
+                    }}
+                  >
                     Sign Out
                   </Header.Button>
                 </Header.Dropdown>
@@ -104,8 +136,8 @@ export default function BrowseContainer({ data }) {
           <Feature.Gradient></Feature.Gradient>
         </Feature>
       </Bg>
-      {data &&
-        data[category].map((listItem) => (
+      {list &&
+        list.map((listItem) => (
           <Card key={category + listItem.title}>
             <Card.RowTitle>{listItem.title}</Card.RowTitle>
             <Card.Row>

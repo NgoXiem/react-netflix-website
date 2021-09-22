@@ -79,33 +79,34 @@ export const Group = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const SearchInput = styled.input`
-  padding: 3px 5px;
-  outline: none;
-  background-color: transparent;
+export const SearchInput = styled.div`
   border: 1px solid #fff;
-  color: #fff;
-  &:focus {
-    outline: none;
+  transform: scaleX(0);
+  transform-origin: top right;
+  transition: transform 0.3s ease;
+  &.active {
+    transform: scaleX(100%);
   }
-  @media screen and (max-width: 767px) {
+  input {
+    background-color: transparent;
+    margin: auto 5px;
+    height: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  @media screen and (max-width: 450px) {
     display: none;
   }
 `;
 export const UserInfo = styled.div``;
 
 export const Search = styled.form`
-  // padding-bottom: 10px;
-  ${SearchInput} {
-    transform: scaleX(0);
-    transform-origin: top right;
-    transition: transform 0.3s ease;
-  }
-  &:hover {
-    ${SearchInput} {
-      transform: scaleX(100%);
-    }
-  }
+  display: flex;
+  flex-direction: row;
 `;
 
 export const Dropdown = styled.div`
@@ -140,22 +141,21 @@ export const Profile = styled.div`
 export const UserImage = styled.img`
   max-width: 30px;
   max-height: 30px;
-  cursor: pointer; ;
+  cursor: pointer;
 `;
 export const SearchIcon = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: 0;
   outline: 0;
-  height: 32px;
-  width: 32px;
-  padding: 0;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
   img {
     filter: brightness(0) invert(1);
     width: 20px;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 400px) {
     display: none;
   }
 `;

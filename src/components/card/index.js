@@ -89,10 +89,12 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
         </Inline>
         <PlayButton>Play</PlayButton>
       </Group>
-      <img
-        src={`/public/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
-        alt={itemFeature.slug}
-      />
+      <BigImage>
+        <img
+          src={`/public/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+          alt={itemFeature.slug}
+        />
+      </BigImage>
       <Close onClick={() => setShowFeature(false)}>
         <img src="/public/images/icons/close.png" alt="close" />
       </Close>

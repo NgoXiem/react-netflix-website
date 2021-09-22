@@ -39,6 +39,7 @@ export const Item = styled.div`
   position: relative;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  flex: 1;
   &:hover {
     z-index: 99;
     transform: scale(1.3);
@@ -143,9 +144,12 @@ export const Group = styled.div`
   height: 100%;
   padding-left: 45px;
 `;
-export const BigImage = styled.image`
-  width: 100%;
-  height: auto;
+export const BigImage = styled.div`
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 `;
 
 export const Inline = styled.div``;

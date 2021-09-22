@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Logo,
@@ -44,11 +44,29 @@ Header.TextLink = function HeaderTextLink({ children, ...restProps }) {
   return <TextLink {...restProps}>{children}</TextLink>;
 };
 
-Header.Search = function HeaderSearch({ children, ...restProps }) {
+Header.Search = function HeaderSearch({
+  searchTerm,
+  setSearchTerm,
+  children,
+  ...restProps
+}) {
+  const [searchActive, setSearchActive] = useState(false);
   return (
     <Search {...restProps}>
-      <SearchInput></SearchInput>
-      <SearchIcon>
+      <SearchInput className={searchActive ? "active" : ""}>
+        <input
+          placeholder="Search movies or series"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </SearchInput>
+      <SearchIcon
+        onClick={(e, searchActive) => {
+          e.preventDefault();
+          setSearchActive((searchActive) => !searchActive);
+        }}
+      >
         <img src="/public/images/icons/search.png" alt="search" />
       </SearchIcon>
       {children}

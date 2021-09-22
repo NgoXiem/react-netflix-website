@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import Form from "../components/form";
@@ -37,7 +37,6 @@ export default function Signin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        //const user = userCredential.user;
         history.push("/browse");
       })
       .catch((error) => {
@@ -56,7 +55,7 @@ export default function Signin() {
             <Form.Base onSubmit={(e) => handleSignin(email, password, e)}>
               <Form.Input
                 type="text"
-                placeholder="Email or Phone number"
+                placeholder="Email address"
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Input>
               <Form.Input
