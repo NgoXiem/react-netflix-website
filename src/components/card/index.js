@@ -18,6 +18,7 @@ import {
   Close,
   Inline,
 } from "./styles/Card";
+import { Video, PlayButton, VideoWrapper } from "../video/index";
 
 export const FeatureContext = createContext();
 
@@ -82,13 +83,19 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
         <BigTitle>{itemFeature.title}</BigTitle>
         <BigDescription>{itemFeature.description}</BigDescription>
         <Inline>
-          <Maturity>{itemFeature.maturity}</Maturity>
+          <Maturity maturity={itemFeature.maturity}>
+            {itemFeature.maturity}
+          </Maturity>
           <Genre>
             {itemFeature.genre.charAt(0).toUpperCase() +
               itemFeature.genre.slice(1)}
           </Genre>
         </Inline>
       </Group>
+      <VideoWrapper>
+        <PlayButton></PlayButton>
+        <Video></Video>
+      </VideoWrapper>
       <BigImage>
         <img
           src={`/public/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}

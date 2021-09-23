@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import db from "../lib/firebase";
 import Header from "../components/header/index";
 import Feature from "../components/feature/index";
-import { Video, PlayButton, VideoWrapper } from "../components/video/index";
 import FooterContainer from "../containers/footer";
 import Card from "../components/card";
 import logo from "../logo.svg";
@@ -154,12 +153,7 @@ export default function BrowseContainer({ data }) {
                 </Card.Item>
               ))}
             </Card.Row>
-            <Card.Feature category={category}>
-              <VideoWrapper>
-                <PlayButton></PlayButton>
-                <Video></Video>
-              </VideoWrapper>
-            </Card.Feature>
+            <Card.Feature category={category}></Card.Feature>
           </Card>
         ))}
       <FooterContainer></FooterContainer>

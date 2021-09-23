@@ -25,6 +25,9 @@ export const Info = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: all 0.2s ease-in-out;
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 export const Title = styled.h5`
   font-size: 12px;
@@ -55,6 +58,9 @@ export const Item = styled.div`
   }
   &:first-of-type {
     margin-left: 45px;
+    @media (max-width: 600px) {
+      margin-left: 15px;
+    }
     @media (max-width: 1000px) {
       margin-left: 30px;
     }
@@ -86,12 +92,18 @@ export const Feature = styled.div`
 export const Close = styled.div`
 img {
   position: absolute;
+  cursor: pointer;
   top: 20px;
   right: 20px;
   max-width: 40px;
-  z-index: 2;
   filter: brightness(0) invert(1);
+  @media screen and (max-width: 600px) {
+    top: 10px;
+    right: 10px;
+     max-width: 20px;
   }
+  }
+  
 }`;
 export const Genre = styled.span`
   display: inline-block;
@@ -99,24 +111,38 @@ export const Genre = styled.span`
   font-weight: bold;
   padding: 5px;
   font-size: 13px;
+  @media screen and (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 export const Maturity = styled.span`
   display: inline-block;
   border-radius: 50%;
-  background-color: #e50914;
+  background-color: ${({ maturity }) =>
+    maturity >= 15 ? "#e50914" : "#2f9600"};
   color: #fff;
   font-weight: bold;
   padding: 5px;
   font-size: 13px;
+  @media screen and (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 
-export const BigTitle = styled.h3``;
+export const BigTitle = styled.h3`
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+  }
+`;
 export const BigDescription = styled.p`
   max-width: 450px;
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
   margin: 10px 0;
+  @media screen and (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 export const Group = styled.div`
   display: flex;
@@ -125,9 +151,14 @@ export const Group = styled.div`
   gap: 10px;
   position: absolute;
   top: 0;
-  left: 0x;
+  left: 0;
   height: 100%;
   padding-left: 45px;
+  @media screen and (max-width: 600px) {
+    gap: 0px;
+    padding-left: 20px;
+    padding-top: 30px;
+  }
 `;
 export const BigImage = styled.div`
   img {
