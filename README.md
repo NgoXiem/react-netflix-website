@@ -1,4 +1,4 @@
-# View live demo here: https://netflix-website-f9c64.web.app/browse
+# View live demo here: https://netflix-website-f9c64.web.app/
 
 # Getting Started with Create React App
 
