@@ -15,9 +15,9 @@ import Fuse from "fuse.js";
 const Bg = styled.div`
   height: 100%;
   width: 100%;
-  background: url("public/images/misc/joker1.jpg");
+  background: url("public/images/misc/shawshank.jpg");
   background-size: cover;
-  background-position: top left;
+  background-position: top;
   background-repeat: no-repeat;
 `;
 
@@ -123,13 +123,12 @@ export default function BrowseContainer({ data }) {
         </Header>
         <Feature>
           <Feature.Group>
-            <Feature.Heading>Watch Joker Now</Feature.Heading>
+            <Feature.Heading>
+              Watch The Shawshank Redemption Now
+            </Feature.Heading>
             <Feature.Description>
-              Forever alone in a crowd, failed comedian Arthur Fleck seeks
-              connection as he walks the streets of Gotham City. Arthur wears
-              two masks -- the one he paints for his day job as a clown, and the
-              guise he projects in a futile attempt to feel like he's part of
-              the world around him.
+              Two imprisoned men bond over a number of years, finding solace and
+              eventual redemption through acts of common decency.
             </Feature.Description>
             <Feature.Button>Play</Feature.Button>
           </Feature.Group>
