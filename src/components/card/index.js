@@ -93,8 +93,8 @@ Card.Feature = function CardFeature({ category, children, ...restProps }) {
         </Inline>
       </Group>
       <VideoWrapper>
-        <PlayButton></PlayButton>
         <Video></Video>
+        <PlayButton></PlayButton>
       </VideoWrapper>
       <BigImage>
         <img

@@ -126,6 +126,7 @@ export const Maturity = styled.span`
   font-size: 13px;
   @media screen and (max-width: 600px) {
     font-size: 10px;
+    padding: 3px;
   }
 `;
 

@@ -1,20 +1,28 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
+  padding-left: 45px;
+  @media screen and (max-width: 600px) {
+    padding-left: 30px;
+  }
+
   &.active {
     z-index: 1000;
   }
 `;
 export const Button = styled.button`
   display: flex;
+  width: fit-content;
   flex-direction: row;
   gap: 5px;
-  margin-top: 10px;
+  margin-bottom: 20px;
   background-color: #e50914;
   line-height: normal;
   padding: 5px 20px;
@@ -26,7 +34,7 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   @media screen and (max-width: 600px) {
-    margin-top: 0px;
+    margin-bottom: 0px;
     font-size: 12px;
     padding: 5px 10px;
   }
@@ -52,9 +60,11 @@ export const Modal = styled.div`
 `;
 export const Inner = styled.div`
   position: relative;
+  width: 100%;
+  height: 100%;
   video {
-    width: 100%;
-    height: auto;
+    width: 60%;
+    height: 100%;
   }
   img {
     position: absolute;
